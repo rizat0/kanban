@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FormTaskFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            android:paddingTop="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_nova_tarefa_formtask_fragment"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"/>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:text="@string/description_text"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/editTextDescricao"
+                android:paddingStart="15dp"
+                style="@style/EditTextTheme"
+                android:inputType="text"
+                android:hint="@string/hint_edit_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewStatus"
+                android:layout_marginTop="16dp"
+                android:text="@string/title_status_radiogroup_formtask"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editTextDescricao"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewStatus">
+                <RadioButton
+                    android:layout_width="88dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbTodo"
+                    android:text="@string/a_fazer_radiobutton"
+                    android:checked="true"
+                    android:layout_weight="1"
+                    android:theme="@style/MyRadioButton"
+                    android:textColor="@color/white"/>
+                <RadioButton
+                    android:layout_width="88dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbDoing"
+                    android:buttonTint="@color/black"
+                    android:layout_weight="1"
+                    android:text="@string/fazendo_radiobutton"
+                    android:theme="@style/MyRadioButton"
+                    android:textColor="@color/white"/>
+                <RadioButton
+                    android:layout_width="88dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbDone"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/black"
+                    android:text="@string/feita_radiobutton"
+                    android:theme="@style/MyRadioButton"
+                    android:textColor="@color/white"/>
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonSave"
+                android:layout_marginTop="16dp"
+                android:text="@string/text_button_formtask_fragment"
+                style="@style/ButtonTheme"
+                app:layout_editor_absoluteX="16dp"
+                app:layout_editor_absoluteY="221dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/white"
+                android:visibility="invisible"
+                app:layout_editor_absoluteX="152dp"
+                app:layout_editor_absoluteY="278dp"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonSave"/>
+
+            <TextView
+                android:id="@+id/textViewNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eduardo Neumam Fraizleben"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

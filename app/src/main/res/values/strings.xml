@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Task</string>
+
+    <string name="status_task_todo">A Fazer</string>
+    <string name="status_task_doing">Fazendo</string>
+    <string name="status_task_done">Feitas</string>
+    <string name="hint_edit_email">Insira seu e-mail</string>
+    <string name="hint_edit_password">Insira sua senha</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_tile_warning">Atenção</string>
+    <string name="text_button_warning">Entendi</string>
+    <string name="password_empty">Preencha sua senha!</string>
+    <string name="passord_text">Senha</string>
+    <string name="email_empty">Preencha seu email!</string>
+    <string name="email_text">E-mail</string>
+
+    <string name="text_title_login_fragment">Login</string>
+    <string name="text_button_register_login_fragment">Criar conta</string>
+    <string name="text_button_recover_login_fragment">Recuperar conta</string>
+
+    <string name="email_empty_register_fragment">Preencha com e-mail válido.</string>
+    <string name="password_empty_register_gragment">Preencha com senha.</string>
+    <string name="text_button_register_fragment">Enviar</string>
+    <string name="text_title_toolbar_register_fragment">Criar conta</string>
+
+    <string name="text_info_recover_account_fragment">Informe seu email de cadastro para receber \n um link para alteração de senha.</string>
+    <string name="text_title_toolbar_recover_account_fragment">Recuperar conta</string>
+    <string name="text_button_recover_account_fragment">Enviar</string>
+
+    <string name="description_empty_form_task_fragment">Preencha uma descrição!</string>
+    <string name="title_nova_tarefa_formtask_fragment">Nova tarefa</string>
+    <string name="description_text">Descrição</string>
+    <string name="hint_edit_description">Informe sua nova tarefa</string>
+    <string name="title_status_radiogroup_formtask">Status</string>
+    <string name="a_fazer_radiobutton">A Fazer</string>
+    <string name="fazendo_radiobutton">Fazendo</string>
+    <string name="feita_radiobutton">Feita</string>
+    <string name="text_button_formtask_fragment">Salvar</string>
+    <string name="text_button_registeraccount_fragment">Criar conta</string>
+</resources>
