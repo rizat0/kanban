@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "265058425493",
+    "project_id": "kanban-44ee1",
+    "storage_bucket": "kanban-44ee1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265058425493:android:511b2bcd872345d7c8d99c",
+        "android_client_info": {
+          "package_name": "com.leticia.task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpPhrj6GttUL85Ga2TvlRoOVjNZrCQG7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

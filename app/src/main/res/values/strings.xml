@@ -17,7 +17,7 @@
 
     <string name="text_title_login_fragment">Login</string>
     <string name="text_button_register_login_fragment">Criar conta</string>
-    <string name="text_button_recover_login_fragment">Recuperar conta</string>
+    <string name="text_button_recover_login_fragment">Recupera conta</string>
 
     <string name="email_empty_register_fragment">Preencha com e-mail válido.</string>
     <string name="password_empty_register_gragment">Preencha com senha.</string>
