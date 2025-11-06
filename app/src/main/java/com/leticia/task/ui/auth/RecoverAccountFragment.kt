@@ -36,10 +36,10 @@ class RecoverAccountFragment : Fragment() {
     }
     private fun initListener(){
         binding.buttonEnviar.setOnClickListener{
-            valideData()
+            validateData()
         }
     }
-    private fun valideData(){
+    private fun validateData(){
         val email = binding.editTextEmail.text.toString().trim()
 
         if (email.isNotBlank()) {

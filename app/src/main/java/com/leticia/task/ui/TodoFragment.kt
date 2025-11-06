@@ -6,13 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.database
 import com.leticia.task.R
 import com.leticia.task.data.model.Status
 import com.leticia.task.data.model.Task
 import com.leticia.task.databinding.FragmentTodoBinding
 import com.leticia.task.ui.adapter.TaskAdapter
+import com.leticia.task.util.showBottomSheet
 
 
 class TodoFragment : Fragment() {
@@ -21,6 +32,8 @@ class TodoFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var taskAdapter: TaskAdapter
+    private lateinit var reference: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +46,8 @@ class TodoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        reference = Firebase.database.reference
+        auth = Firebase.auth
         initListeners()
         initRecyclerViewTask()
         getTask()
@@ -57,7 +72,10 @@ class TodoFragment : Fragment() {
     private fun optionSelected(task:Task, option: Int){
         when (option){
             TaskAdapter.SELECT_REMOVER -> {
-                Toast.makeText(requireContext(), "Removendo ${task.description}", Toast.LENGTH_SHORT).show()
+                showBottomSheet(titleDialog = R.string.text_title_dialog_confira_logout,
+                    message = getString(R.string.text_message_dialog_confirm_logout),
+                    tittleButton = R.string.error_generic,,
+                    OnC)
             }
             TaskAdapter.SELECT_EDIT -> {
                 Toast.makeText(requireContext(), "Editando ${task.description}", Toast.LENGTH_SHORT).show()
@@ -72,14 +90,52 @@ class TodoFragment : Fragment() {
     }
 
     private fun getTask() {
-        val taskList = listOf(
-            Task("0", "Criar painel de usuários e produtos", Status.TODO),
-            Task("1", "Adicionar filtros de busca por categoria e tamanho", Status.TODO),
-            Task("2", "Implementar upload de fotos de roupas", Status.TODO),
-            Task("3", "Criar sistema de avaliação entre usuários", Status.TODO),
-            Task("4", "Testar segurança e permissões do aplicativo", Status.TODO)
-        )
-        taskAdapter.submitList(taskList)
+        reference
+            .child("task")
+            .child(auth.currentUser?.uid ?: "")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(p0: DataSnapshot) {
+                    val taskList = mutableListOf<Task>()
+
+                    for(ds in p0.children){
+                        val task = ds.getValue(Task::class.java) as Task
+                        if(task.status == Status.TODO) {
+                            taskList.add(task)
+                        }
+                    }
+
+                    binding.progressBar.isVisible = false
+                    listEmpty(taskList)
+                    taskList.reverse()
+                    taskAdapter.submitList(taskList)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(), R.string.error_generic, Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun deleteTask(task: Task) {
+        reference
+            .child("task")
+            .child(auth.currentUser?.uid?: "")
+            .child(task.id)
+            .removeValue().addOnCompleteListener { result ->
+                if (result.isSuccessful) {
+                    Toast.makeText(requireContext(),R.string.text_delete_sucess_task, Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(),R.string.error_generic,Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun listEmpty(taskList: List<Task>) {
+        binding.textInfo.text = if (taskList.isEmpty()){
+            getString(R.string.text_list_task_empty)
+        } else {
+            ""
+        }
     }
 
     override fun onDestroyView() {
