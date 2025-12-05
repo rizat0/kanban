@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -46,6 +47,7 @@ class FormTaskFragment : Fragment() {
         auth = Firebase.auth
         initListener()
     }
+
     private fun initListener() {
         binding.buttonSave.setOnClickListener {
             valideData()
@@ -65,11 +67,11 @@ class FormTaskFragment : Fragment() {
 
         if (description.isNotBlank()) {
             binding.progressBar.isVisible = true
-            task = if (newTask) {
-                Task(id = java.util.UUID.randomUUID().toString(), description = description, status = status)
-            } else {
-                task.copy(description = description)
-            }
+            if (newTask) task = Task()
+            task.id = reference.database.reference.push().key?:""
+            task.description = description
+            task.status = status
+
             saveTask()
         } else {
             showBottomSheet(message = getString(R.string.description_empty_form_task_fragment))

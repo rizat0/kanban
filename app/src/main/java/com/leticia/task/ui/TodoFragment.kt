@@ -74,8 +74,11 @@ class TodoFragment : Fragment() {
             TaskAdapter.SELECT_REMOVER -> {
                 showBottomSheet(titleDialog = R.string.text_title_dialog_confira_logout,
                     message = getString(R.string.text_message_dialog_confirm_logout),
-                    tittleButton = R.string.error_generic,,
-                    OnC)
+                    tittleButton = R.string.error_generic,
+                    onClick = {
+                        deleteTask(task)
+                    }
+                )
             }
             TaskAdapter.SELECT_EDIT -> {
                 Toast.makeText(requireContext(), "Editando ${task.description}", Toast.LENGTH_SHORT).show()
